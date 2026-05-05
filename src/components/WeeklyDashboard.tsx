@@ -83,7 +83,7 @@ export default function WeeklyDashboard({ entries }: WeeklyDashboardProps) {
             const key = getDayKey(d)
             const isToday = key === todayKey
             const isPast = d < today && !isToday
-            const isFuture = d > today
+
             const dayEntries = entryMap[key] ?? []
             const dominant = getDominantQuadrant(dayEntries)
             const hasEntries = dayEntries.length > 0
