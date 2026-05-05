@@ -16,7 +16,7 @@ export default function ThreeColumnLayout({ left, main, right, bottom }: ThreeCo
       {/* 主內容區 */}
       <div
         className="three-col-grid"
-        style={{ flex: 1, overflow: 'hidden' }}
+        style={{ flex: 1 }}
       >
         {/* 左欄（桌面 24px 收合條，小螢幕隱藏）*/}
         <div className="hidden lg:block">
