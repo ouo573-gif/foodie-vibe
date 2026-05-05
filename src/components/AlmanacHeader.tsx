@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import type { MealEntry } from '../types'
 
 interface AlmanacHeaderProps {
@@ -149,8 +150,8 @@ export default function AlmanacHeader({ entries = [] }: AlmanacHeaderProps) {
         </div>
       </div>
 
-      {/* 桌面：CSS transition 滑入面板 */}
-      {mounted && (
+      {/* 桌面：CSS transition 滑入面板（portal 至 body 避免 grid 截切）*/}
+      {mounted && createPortal(
         <>
           <div
             onClick={handleClose}
@@ -235,7 +236,8 @@ export default function AlmanacHeader({ entries = [] }: AlmanacHeaderProps) {
               </div>
             </div>
           </div>
-        </>
+        </>,
+        document.body
       )}
 
       {/* 手機/平板：頂部橫條 */}
