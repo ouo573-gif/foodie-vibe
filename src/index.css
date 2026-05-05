@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+@theme {
+  /* 色彩系統（對應 DESIGN.md）*/
+  --color-vermillion: #8f000d;
+  --color-vermillion-light: #b22222;
+  --color-parchment: #fff8f7;
+  --color-parchment-dim: #efd4d1;
+  --color-parchment-low: #fff0ef;
+  --color-ink: #261816;
+  --color-inkwash: #8e706d;
+  --color-outline: #e2beba;
+  --color-fortune-green: #2d5a27;
+
+  /* 字體 */
+  --font-serif: "Noto Serif TC", serif;
+
+  /* 間距 */
+  --spacing-page: 24px;
+  --spacing-gutter: 12px;
+}
+
+/* 全域基礎樣式 */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-size: 16px;
+  font-family: var(--font-serif);
+  background-color: var(--color-parchment);
+  color: var(--color-ink);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* 宣紙質感背景（仿舊紙張紋理）*/
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 30%, rgba(180, 140, 100, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 70%, rgba(160, 120, 80, 0.05) 0%, transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 三欄格局（純 CSS @media，取代 Tailwind arbitrary important class）*/
+.three-col-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 1024px) {
+  .three-col-grid {
+    grid-template-columns: 24px 1fr 300px;
+  }
+}
+
+/* 農民曆風格共用元件 */
+.border-almanac {
+  border: 3px double var(--color-ink);
+  border-radius: 0;
+}
+
+.card-almanac {
+  border: 3px double var(--color-ink);
+  border-radius: 0;
+  padding: 16px;
+  background-color: var(--color-parchment);
+}
+
+/* Badge 樣式 */
+.badge-great {
+  border: 2px solid var(--color-ink);
+  color: var(--color-fortune-green);
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.badge-necessary-evil {
+  border: 2px solid var(--color-ink);
+  color: var(--color-ink);
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.badge-ascetic {
+  border: 2px solid var(--color-inkwash);
+  color: var(--color-inkwash);
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.badge-karma-debt {
+  border: 2px solid var(--color-vermillion-light);
+  color: var(--color-vermillion);
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* 宜/忌 標籤 */
+.label-yi {
+  display: inline-block;
+  background-color: var(--color-fortune-green);
+  color: var(--color-parchment);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 6px;
+  letter-spacing: 0.15em;
+}
+
+.label-ji {
+  display: inline-block;
+  background-color: var(--color-vermillion);
+  color: var(--color-parchment);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 6px;
+  letter-spacing: 0.15em;
+}
